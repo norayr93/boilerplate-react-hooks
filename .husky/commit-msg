@@ -64,3 +64,4 @@ echo "${RED}Commit description should contain at least 10 alphanumeric character
 exit 1
 
 #sdhjkfh
+#dshjfk
