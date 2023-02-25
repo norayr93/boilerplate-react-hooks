@@ -63,3 +63,5 @@ echo "${LIGHTGREEN}GRP-0888 HOTFIX CORE - (components/checkbox) : Fix checkbox u
 
 echo "${RED}Commit description should contain at least 10 alphanumeric characters separated by a single space:${RED}\n"
 exit 1
+
+#sdhjkfh
