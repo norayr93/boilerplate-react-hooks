@@ -41,7 +41,7 @@ MESSAGE_PATTERNS=(
   "^GRP\-[0-9]+[[:blank:]](FIX|CHANGE|HOTFIX|FEATURE){1}[[:blank:]](CORE|SHARED|ADM|CSR|BUS|OTHER){1}[[:blank:]]-[[:blank:]]([[:alnum:],.\-]+[[:blank:]]?){10,}$" 
 )
 
-release_pattern="^[a-zA-Z[:blank:]]*release/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(-(beta|alpha)\.[0-9])?[:alnum:]{0,}"
+release_pattern="^[a-zA-Z[:blank:]]*release/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(-(beta|alpha)\.[0-9])?[:alnum:]*"
 hotfix_pattern="hotfix/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
 
 if [[ "$formatted_msg" =~ $release_pattern ]]; then
