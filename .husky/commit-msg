@@ -33,12 +33,24 @@ echo "$GIT_OBJECT_DIRECTORY - GIT_OBJECT_DIRECTORY"
 echo "$GIT_GLOB_PATHSPECS - GIT_GLOB_PATHSPECS"
 
 msg="$(grep -v '^#' $1)" 
+formatted_msg=$(echo "${msg}" | sed "s/['\"]//g")
 echo "$msg - commit message"
 authors_whitelist=("Lee Jones" "Senik Hakobyan")
 MESSAGE_PATTERNS=(
   "^GRP\-[0-9]+[[:blank:]](FIX|CHANGE|HOTFIX|FEATURE){1}[[:blank:]](CORE|SHARED|ADM|CSR|BUS|OTHER){1}[[:blank:]]-[[:blank:]]\([[:alnum:]./\-]+\)[[:blank:]]:[[:blank:]]([[:alnum:],.\-]+[[:blank:]]?){10,}$"
   "^GRP\-[0-9]+[[:blank:]](FIX|CHANGE|HOTFIX|FEATURE){1}[[:blank:]](CORE|SHARED|ADM|CSR|BUS|OTHER){1}[[:blank:]]-[[:blank:]]([[:alnum:],.\-]+[[:blank:]]?){10,}$" 
 )
+
+release_pattern="^[a-zA-Z[:blank:]]*release/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(-(beta|alpha)\.[0-9])?[:alnum:]{0,}"
+hotfix_pattern="hotfix/[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
+
+if [[ "$formatted_msg" =~ $release_pattern ]]; then
+  exit 0
+fi
+
+if [[ "$formatted_msg" =~ $hotfix_pattern ]]; then
+  exit 0
+fi
 
 if [[ "${authors_whitelist[*]}" =~ ${GIT_AUTHOR_NAME} ]]; then
   exit 0
@@ -66,3 +78,6 @@ exit 1
 
 #sdhjkfh
 #dshjfk
+#shdfk
+#sdjhfkhsf
+#jdfkgj
