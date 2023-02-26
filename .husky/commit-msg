@@ -5,6 +5,7 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 LIGHTGREEN='\033[1;32m'
+###dshfkdsjhf
 
 branch=$(git symbolic-ref HEAD)
 echo "$branch - branch"
@@ -32,6 +33,7 @@ echo "$GIT_OBJECT_DIRECTORY - GIT_OBJECT_DIRECTORY"
 echo "$GIT_GLOB_PATHSPECS - GIT_GLOB_PATHSPECS"
 
 msg="$(grep -v '^#' $1)" 
+formatted_msg=$(echo "${msg}" | sed "s/['\"]//g")
 echo "$msg - commit message"
 authors_whitelist=("Lee Jones" "Senik Hakobyan")
 MESSAGE_PATTERNS=(
@@ -39,14 +41,14 @@ MESSAGE_PATTERNS=(
   "^GRP\-[0-9]+[[:blank:]](FIX|CHANGE|HOTFIX|FEATURE){1}[[:blank:]](CORE|SHARED|ADM|CSR|BUS|OTHER){1}[[:blank:]]-[[:blank:]]([[:alnum:],.\-]+[[:blank:]]?){10,}$" 
 )
 
-release_pattern="release/[1-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(-(beta|alpha)\.[0-9])?$"
+release_pattern="^[a-zA-Z[:blank:]]*release/[1-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(-(beta|alpha)\.[0-9])?[:alnum:]{0,}"
 hotfix_pattern="hotfix/[1-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
 
-if [[ "$msg" =~ $release_pattern ]]; then
+if [[ "$formatted_msg" =~ $release_pattern ]]; then
   exit 0
 fi
 
-if [[ "$msg" =~ $hotfix_pattern ]]; then
+if [[ "$formatted_msg" =~ $hotfix_pattern ]]; then
   exit 0
 fi
 
