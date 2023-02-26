@@ -39,6 +39,14 @@ MESSAGE_PATTERNS=(
   "^GRP\-[0-9]+[[:blank:]](FIX|CHANGE|HOTFIX|FEATURE){1}[[:blank:]](CORE|SHARED|ADM|CSR|BUS|OTHER){1}[[:blank:]]-[[:blank:]]([[:alnum:],.\-]+[[:blank:]]?){10,}$" 
 )
 
+release_pattern="release/[1-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}(-(beta|alpha)\.[0-9])?$"
+hotfix_pattern="hotfix/[1-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$"
+
+if [[ "$msg" =~ $release_pattern || "$msg" =~ $hotfix_pattern ]]; then
+  echo "Commit message matches release pattern"
+  exit 0
+fi
+
 if [[ "${authors_whitelist[*]}" =~ ${GIT_AUTHOR_NAME} ]]; then
   exit 0
 fi
