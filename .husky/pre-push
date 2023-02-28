@@ -30,5 +30,5 @@ if [ "$remote_oid" == "$zero" ]  && [ -n "$(git branch -r --contains ${local_oid
 	echo "Nothing to update, you don't have any commit to push"
 	exit 1
 fi
-# Heress
+# Heressdd
 exit 0
