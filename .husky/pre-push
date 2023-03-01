@@ -4,31 +4,31 @@
 
 zero=$(git hash-object --stdin </dev/null | tr '0-9a-f' '0')
 
-read -r local_ref local_oid remote_ref remote_oid
+# read -r local_ref local_oid remote_ref remote_oid
 
-commit_message=""
-current_rev=${local_oid}
-general_sources=("core" "shared")
-apps=("adm" "csr" "bus")
-apps_to_build=()
+# commit_message=""
+# current_rev=${local_oid}
+# general_sources=("core" "shared")
+# apps=("adm" "csr" "bus")
+# apps_to_build=()
 
-echo "$local_ref - local_ref"
-echo "$local_oid - local_oid"
-echo "$remote_ref - remote_ref"
-echo "$remote_oid - remote_oid"
+# echo "$local_ref - local_ref"
+# echo "$local_oid - local_oid"
+# echo "$remote_ref - remote_ref"
+# echo "$remote_oid - remote_oid"
 
-if [ -z "$local_oid" ] || [ -z "$local_ref" ]; then
-	echo "Nothing to update"
-	exit 1
-fi
+# if [ -z "$local_oid" ] || [ -z "$local_ref" ]; then
+# 	echo "Nothing to update"
+# 	exit 1
+# fi
 
-if [ "$local_oid" == "$zero" ]; then
-	exit 0
-fi
+# if [ "$local_oid" == "$zero" ]; then
+# 	exit 0
+# fi
 
-if [ "$remote_oid" == "$zero" ]  && [ -n "$(git branch -r --contains ${local_oid})" ]; then
-	echo "Nothing to update, you don't have any commit to push"
-	exit 1
-fi
-# Heressdd
-exit 0
+# if [ "$remote_oid" == "$zero" ]  && [ -n "$(git branch -r --contains ${local_oid})" ]; then
+# 	echo "Nothing to update, you don't have any commit to push"
+# 	exit 1
+# fi
+
+# exit 0
