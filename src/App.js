@@ -19,7 +19,7 @@ const App = () => {
         RESET
       </button>
       <button onClick={() => { actions.generalActions.setValue(valueRandom()); }}>
-        VALUE RANDOM
+        other test
       </button>
     </div>
   );
